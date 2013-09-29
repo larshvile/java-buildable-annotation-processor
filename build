@@ -1,0 +1,12 @@
+#!/bin/bash -ex
+
+rm -rf classes-processor classes
+mkdir classes-processor classes
+
+# compile the processor
+javac -d classes-processor src-processor/*
+
+# compile sources
+javac -cp "resources:classes-processor" -d classes src/*
+
+tree

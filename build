@@ -1,12 +1,16 @@
 #!/bin/bash -ex
 
-rm -rf classes-processor classes
-mkdir classes-processor classes
+rm -rf classes-processor classes generated-sources
+mkdir classes-processor classes generated-sources
 
 # compile the processor
 javac -d classes-processor src-processor/*
 
 # compile sources
-javac -cp "resources:classes-processor" -d classes src/*
+javac -cp "resources:classes-processor" -d classes -s generated-sources src/*
 
 tree
+
+# Test it
+echo
+java -ea -cp classes-processor:classes Client
